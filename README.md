@@ -1,23 +1,15 @@
-Heroku buildpack: FFMpeg
+Heroku buildpack: FFMpeg + x264 + Ogg Vorbis
 =======================
 
 This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for using [ffmpeg](http://www.ffmpeg.org/) in your project.  
-It doesn't do anything else, so to actually compile your app you should use [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) to combine it with a real buildpack.
+It doesn't do anything else, so to actually compile your app you should combine it with a real buildpack.
 
 Usage
 -----
-To use this buildpack, you should prepare .buildpacks file that contains this buildpack url and your real buildpack url.  
+To make it work with Ruby (Rails) buildpack do:
 
-    $ ls
-    .buildpacks
-    ...
-    
-    $ cat .buildpacks
-    https://github.com/shunjikonishi/heroku-buildpack-ffmpeg
-    https://github.com/heroku/heroku-buildpack-play
-
-    $ heroku create --buildpack https://github.com/ddollar/heroku-buildpack-multi
-
+    $ heroku buildpacks:add https://github.com/heroku/heroku-buildpack-ruby
+    $ heroku buildpacks:add https://github.com/znupy/heroku-buildpack-ffmpeg-x264-ogg
     $ git push heroku master
     ...
 
